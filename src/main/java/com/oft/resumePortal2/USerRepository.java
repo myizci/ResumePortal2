@@ -1,6 +1,6 @@
-package com.oft.resumeportal2;
+package com.oft.resumePortal2;
 
-import com.oft.resumeportal2.models.User;
+import com.oft.resumePortal2.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

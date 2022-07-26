@@ -1,13 +1,12 @@
-package com.oft.resumeportal2.models;
+package com.oft.resumePortal2.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 @Getter
 @Setter
 public class User {
@@ -17,5 +16,6 @@ public class User {
     private String userName;
     private String password;
     private boolean active;
+    private String roles;
 
 }
