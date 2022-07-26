@@ -15,4 +15,9 @@ public class HomeController {
     public String edit(){
         return "edit page";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login page";
+    }
 }
