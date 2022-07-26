@@ -41,6 +41,12 @@ public class SecurityConfiguration {
 //                .and().formLogin();
 //    }
 
+    private final AuthSuccessHandler authSuccessHandler;
+
+    public SecurityConfiguration(AuthSuccessHandler authSuccessHandler) {
+        this.authSuccessHandler = authSuccessHandler;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //        http
@@ -56,14 +62,21 @@ public class SecurityConfiguration {
                 .antMatchers(
                         "/"
                 ).permitAll()
+
+                .antMatchers("/edit").hasAuthority("USER")
                 .anyRequest()
                 .authenticated()
-                .antMatchers("/edit")
-                .formLogin()
-
-                .loginPage("/login")
                 .and()
-                .build();
+                .formLogin()
+                .loginPage("/edit")
+                .successHandler(authSuccessHandler)
+               // .failureUrl("login?error=true")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .and().build();
     }
 
     @Bean
